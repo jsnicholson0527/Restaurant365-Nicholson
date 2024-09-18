@@ -12,7 +12,7 @@ Specifically:
 1. I created a GitHub account and learned the interface (In my current job we use Bitbucket)
 2. I chose a language that is currently in use at my current company (JavaScript)
 3. Instead of being able to engage a developer on my team to address this feature, I utilized AI (askaichat.ai)
-4. I the requirement into the UI
+4. I fed the requirement into the UI
 5. Executied the commit
 6. Reviewed the code provided
 7. Reran the requirement through AI to see if the solution was different to act as a peer review
