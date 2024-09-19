@@ -1,21 +1,3 @@
-// parseInput.js
-function parseInput(input) {
-    input = input.trim();
-    const numbers = input.split(/[,|\n]/).map(num => {
-        const parsed = parseFloat(num);
-        return isNaN(parsed) ? 0 : parsed;
-    });
-
-    if (numbers.length === 0) {
-        return 0; // If no numbers, return 0
-    }
-
-    return numbers.reduce((acc, curr) => acc + curr, 0);
-}
-
-module.exports = parseInput;
-
-// parseInput.test.js
 const parseInput = require('./parseInput');
 
 describe('parseInput', () => {
@@ -27,15 +9,15 @@ describe('parseInput', () => {
         expect(parseInput("1,5000")).toBe(5001);
     });
 
-    test('should return the sum of two numbers with negative', () => {
-        expect(parseInput("4,-3")).toBe(1);
+    test('should throw an error for negative numbers', () => {
+        expect(() => parseInput("4,-3")).toThrow('Negative numbers are not allowed: -3');
     });
 
     test('should return 0 for empty input', () => {
         expect(parseInput("")).toBe(0);
     });
 
-    test('should return 0 for invalid number', () => {
+    test('should return 5 for input with invalid number', () => {
         expect(parseInput("5,tytyt")).toBe(5);
     });
 
@@ -56,5 +38,13 @@ describe('parseInput', () => {
         expect(parseInput("a,b")).toBe(0);
         expect(parseInput("10,abc")).toBe(10);
         expect(parseInput("xyz,5")).toBe(5);
+    });
+
+    test('should throw an error with all negative numbers', () => {
+        expect(() => parseInput("-1,-2,-3")).toThrow('Negative numbers are not allowed: -1, -2, -3');
+    });
+
+    test('should throw an error with mixed valid and negative numbers', () => {
+        expect(() => parseInput("1,-2,3")).toThrow('Negative numbers are not allowed: -2');
     });
 });
