@@ -2,8 +2,8 @@ function parseInput(input) {
     // Trim the input to remove any leading or trailing whitespace
     input = input.trim();
   
-    // Split the input by comma and map to numbers
-    const numbers = input.split(',').map(num => {
+    // Split the input by both comma and newline characters
+    const numbers = input.split(/[,|\n]/).map(num => {
         // Try to parse each number; if invalid, convert to 0
         const parsed = parseFloat(num);
         return isNaN(parsed) ? 0 : parsed;
@@ -20,12 +20,13 @@ function parseInput(input) {
 
 // Example usage
 const inputs = [
-    "20",               // returns 20
-    "1,5000",          // returns 5001
-    "4,-3",            // returns 1
-    "",                 // returns 0
-    "5,tytyt",         // returns 5
-    "1,2,3,4,5,6,7,8,9,10,11,12" // returns 78
+    "20",                      // returns 20
+    "1,5000",                 // returns 5001
+    "4,-3",                   // returns 1
+    "",                        // returns 0
+    "5,tytyt",                // returns 5
+    "1\n2,3",                 // returns 6
+    "1\n2\n3\n4\n5"           // returns 15
 ];
 
 inputs.forEach(input => {
