@@ -1,7 +1,7 @@
 // parseInput.js
 function parseInput(input) {
     input = input.trim();
-    const numbers = input.split(',').map(num => {
+    const numbers = input.split(/[,|\n]/).map(num => {
         const parsed = parseFloat(num);
         return isNaN(parsed) ? 0 : parsed;
     });
@@ -41,6 +41,8 @@ describe('parseInput', () => {
 
     test('should return the sum of multiple numbers', () => {
         expect(parseInput("1,2,3,4,5,6,7,8,9,10,11,12")).toBe(78);
+        expect(parseInput("1\n2,3")).toBe(6);
+        expect(parseInput("1\n2\n3\n4\n5")).toBe(15);
     });
 
     test('should handle missing numbers by adding zero', () => {
