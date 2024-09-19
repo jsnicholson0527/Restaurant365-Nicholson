@@ -6,12 +6,8 @@ function parseInput(input) {
         return isNaN(parsed) ? 0 : parsed;
     });
 
-    if (numbers.length > 2) {
-        throw new Error('Too many numbers provided. Please provide a maximum of 2 numbers.');
-    }
-
-    if (numbers.length === 0 || (numbers.length === 1 && numbers[0] === 0)) {
-        numbers.push(0);
+    if (numbers.length === 0) {
+        return 0; // If no numbers, return 0
     }
 
     return numbers.reduce((acc, curr) => acc + curr, 0);
@@ -43,8 +39,8 @@ describe('parseInput', () => {
         expect(parseInput("5,tytyt")).toBe(5);
     });
 
-    test('should throw an error for more than two numbers', () => {
-        expect(() => parseInput("3,4,5")).toThrow('Too many numbers provided. Please provide a maximum of 2 numbers.');
+    test('should return the sum of multiple numbers', () => {
+        expect(parseInput("1,2,3,4,5,6,7,8,9,10,11,12")).toBe(78);
     });
 
     test('should handle missing numbers by adding zero', () => {
