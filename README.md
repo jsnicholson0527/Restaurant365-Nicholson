@@ -15,7 +15,7 @@ Specifically:
 4. I fed the requirement into the UI
 5. Executied the commit
 6. Reviewed the code provided
-7. Reran the requirement through AI to see if the solution was different to act as a peer review
+7. Reran the requirement through AI to see if the solution was appreciably different to act as a peer review
 8. Repeated steps 4-7 for each requirement, to reflect changing requirements
 
    
