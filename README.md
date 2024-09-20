@@ -19,7 +19,7 @@ Specifically:
 8. Executed the Commit
 9. Repeated steps 4-8 for each requirement, to reflect changing requirements
 10. Reflected the requirement as detailed comments in the commit
-11. As a peer review, I reran the combined requirements through AI as a single prompt and looked for appreciable differences between the two, none were noted
+11. As a peer review, I reran the combined requirements through AI as a single prompt and looked for appreciable differences between the two
 
    
       
