@@ -7,8 +7,10 @@ describe('addNumbers', () => {
         expect(addNumbers("1,5000")).toBe(5001);
     });
 
-    test('adds negative and positive numbers', () => {
-        expect(addNumbers("4,-3")).toBe(1);
+    test('throws an error for negative numbers', () => {
+        expect(() => addNumbers("4,-3")).toThrow('Negative numbers not allowed: -3');
+        expect(() => addNumbers("5,-6,-7")).toThrow('Negative numbers not allowed: -6, -7');
+        expect(() => addNumbers("-1,-2,-3")).toThrow('Negative numbers not allowed: -1, -2, -3');
     });
 
     test('returns 0 for empty input', () => {
