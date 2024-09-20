@@ -29,4 +29,21 @@ describe('addNumbers', () => {
         expect(addNumbers("1\n2,3")).toBe(6);
         expect(addNumbers("1\n2\n3\n4")).toBe(10);
     });
+
+    test('supports custom delimiters', () => {
+        expect(addNumbers("//#\n2#5")).toBe(7);
+        expect(addNumbers("//,\n2,ff,100")).toBe(102); // 'ff' is invalid, so only 2 and 100 are included
+        expect(addNumbers("//;\n1;2")).toBe(3);
+        expect(addNumbers("//|\n1|2|3")).toBe(6);
+    });
+
+    test('handles custom delimiters with negative numbers', () => {
+        expect(() => addNumbers("//;\n1;-2")).toThrow('Negative numbers not allowed: -2');
+        expect(() => addNumbers("//.\n4.-3")).toThrow('Negative numbers not allowed: -3');
+    });
+
+    test('handles custom delimiters with invalid numbers', () => {
+        expect(addNumbers("//@\n2@ff@100")).toBe(102); // 'ff' is invalid, so only 2 and 100 are included
+        expect(addNumbers("//$\n3$abc")).toBe(3); // 'abc' is invalid, so only 3 is included
+    });
 });
