@@ -21,8 +21,9 @@ describe('addNumbers', () => {
         expect(addNumbers("xyz,20")).toBe(20);
     });
 
-    test('sums multiple numbers', () => {
+    test('sums multiple numbers with comma and newline', () => {
         expect(addNumbers("1,2,3,4,5,6,7,8,9,10,11,12")).toBe(78);
-        expect(addNumbers("10,20,30")).toBe(60);
+        expect(addNumbers("1\n2,3")).toBe(6);
+        expect(addNumbers("1\n2\n3\n4")).toBe(10);
     });
 });
