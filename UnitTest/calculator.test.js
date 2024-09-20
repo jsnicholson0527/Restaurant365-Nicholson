@@ -21,8 +21,8 @@ describe('addNumbers', () => {
         expect(addNumbers("xyz,20")).toBe(20);
     });
 
-    test('throws an error for more than 2 numbers', () => {
-        expect(() => addNumbers("1,2,3")).toThrow("Invalid input: only up to 2 numbers are allowed.");
-        expect(() => addNumbers("10,20,30")).toThrow("Invalid input: only up to 2 numbers are allowed.");
+    test('sums multiple numbers', () => {
+        expect(addNumbers("1,2,3,4,5,6,7,8,9,10,11,12")).toBe(78);
+        expect(addNumbers("10,20,30")).toBe(60);
     });
 });
