@@ -3,28 +3,35 @@ function addNumbers(inputString) {
     if (!inputString) {
         return 0; // Return 0 for empty input
     }
-
-    let delimiter = ',';
-    let numbersString = inputString;
+    
+    let delimiters = [',']; // Default delimiter
+    let numbersString = inputString; // Initialize the numbers string
 
     // Check for a custom delimiter
     if (inputString.startsWith('//')) {
         const delimiterEndIndex = inputString.indexOf('\n');
         const delimiterSection = inputString.substring(2, delimiterEndIndex);
         
-        // Handle multi-character delimiter
-        delimiter = delimiterSection.replace(/[\[\]]/g, ''); // Remove square brackets if present
+        // Extract multiple delimiters
+        const delimiterMatches = delimiterSection.match(/\[([^\]]+)\]/g);
+        if (delimiterMatches) {
+            delimiters = delimiterMatches.map(match => match.slice(1, -1)); // Remove square brackets
+        } else {
+            // If no brackets, use the section as a single delimiter
+            delimiters.push(delimiterSection);
+        }
+        
         numbersString = inputString.substring(delimiterEndIndex + 1); // Get the numbers part
     }
 
-    // Split the string by the custom delimiter and newlines
-    const numbers = numbersString.split(new RegExp(`[${delimiter}\\n]`)).map(num => {
+    // Create a regex pattern for splitting using the delimiters
+    const regexPattern = delimiters.join('|').replace(/[-\/\\^$.*+?()[\]{}|]/g, '\\$&'); // Escape special characters
+    const numbers = numbersString.split(new RegExp(`[${regexPattern}\\n]`)).map(num => {
         const parsedNum = Number(num);
         return isNaN(parsedNum) || parsedNum > 1000 ? 0 : parsedNum; // Convert invalid numbers or numbers > 1000 to 0
     });
 
     const negativeNumbers = numbers.filter(num => num < 0); // Collect negative numbers
-
     // If there are negative numbers, throw an error
     if (negativeNumbers.length > 0) {
         throw new Error(`Negative numbers not allowed: ${negativeNumbers.join(', ')}`);
@@ -48,6 +55,7 @@ try {
     console.log(addNumbers("//[***]\n11***22***33")); // Outputs: 66
     console.log(addNumbers("//[%%]\n1%%2%%3")); // Outputs: 6
     console.log(addNumbers("//[--]\n1--2--3--4")); // Outputs: 10
+    console.log(addNumbers("//[*][!!][r9r]\n11r9r22*hh*33!!44")); // Outputs: 110
 } catch (error) {
     console.error(error.message); // Handle the error
 }
