@@ -4,7 +4,7 @@ const { addNumbers } = require('./calculator'); // Assuming the function is in c
 describe('addNumbers', () => {
     test('adds positive numbers', () => {
         expect(addNumbers("20")).toBe(20);
-        expect(addNumbers("1,5000")).toBe(5001);
+        expect(addNumbers("1,5000")).toBe(1); // 5000 is invalid, so only 1 is included
     });
 
     test('throws an error for negative numbers', () => {
@@ -21,6 +21,7 @@ describe('addNumbers', () => {
         expect(addNumbers("5,tytyt")).toBe(5);
         expect(addNumbers("10,abc")).toBe(10);
         expect(addNumbers("xyz,20")).toBe(20);
+        expect(addNumbers("2,1001,6")).toBe(8); // 1001 is invalid, so only 2 and 6 are included
     });
 
     test('sums multiple numbers with comma and newline', () => {
