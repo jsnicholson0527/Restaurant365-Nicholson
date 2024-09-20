@@ -12,11 +12,14 @@ Specifically:
 1. I created a GitHub account and learned the interface (In my current job we use Bitbucket)
 2. I chose a language that is currently in use at my current company (JavaScript)
 3. Instead of being able to engage a developer on my team to address this feature, I utilized AI (askaichat.ai)
-4. I fed the requirement into the UI
-5. Executed the commit
-6. Reviewed the code provided
-7. Reran the requirement through AI to see if the solution was appreciably different to act as a peer review
-8. Repeated steps 4-7 for each requirement, to reflect changing requirements
+4. I fed the requirements into the UI
+5. Had AI generate the code
+6. Had AI generate the corresponding Unit Tests
+7. Reviewed the code and tests provided
+8. Executed the Commit
+9. Repeated steps 4-8 for each requirement, to reflect changing requirements
+10. Reflected the requirement as detailed comments in the commit
+11. As a peer review, I reran the combined requirements through AI as a single prompt and looked for appreciable differences between the two, none were noted
 
    
       
