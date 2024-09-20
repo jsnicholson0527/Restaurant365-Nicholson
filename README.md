@@ -1,7 +1,7 @@
 # Restaurant365-Nicholson
 This is the repository in response to the Calculator Code Challenge
 
-As discussed during my initial screening interview, I have not developed code since 2002
+As discussed during my initial screening interview, I have not developed code since 2002. 
 My career path has led me down a primarily technical management path and while I have led developers, designed solutions and participated in architectural designs and decisions;
 I have not actively participated in the hands-on development of solutions in some time.
 
