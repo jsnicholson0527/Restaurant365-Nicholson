@@ -35,15 +35,20 @@ describe('addNumbers', () => {
         expect(addNumbers("//,\n2,ff,100")).toBe(102); // 'ff' is invalid, so only 2 and 100 are included
         expect(addNumbers("//;\n1;2")).toBe(3);
         expect(addNumbers("//|\n1|2|3")).toBe(6);
+        expect(addNumbers("//[***]\n11***22***33")).toBe(66); // Testing custom delimiter of length 3
+        expect(addNumbers("//[%%]\n1%%2%%3")).toBe(6); // Another custom delimiter
+        expect(addNumbers("//[--]\n1--2--3--4")).toBe(10); // Yet another custom delimiter
     });
 
     test('handles custom delimiters with negative numbers', () => {
         expect(() => addNumbers("//;\n1;-2")).toThrow('Negative numbers not allowed: -2');
         expect(() => addNumbers("//.\n4.-3")).toThrow('Negative numbers not allowed: -3');
+        expect(() => addNumbers("//[***]\n1***-2")).toThrow('Negative numbers not allowed: -2'); // Custom delimiter with negative
     });
 
     test('handles custom delimiters with invalid numbers', () => {
         expect(addNumbers("//@\n2@ff@100")).toBe(102); // 'ff' is invalid, so only 2 and 100 are included
         expect(addNumbers("//$\n3$abc")).toBe(3); // 'abc' is invalid, so only 3 is included
+        expect(addNumbers("//[***]\n2***ff***100")).toBe(102); // 'ff' is invalid, so only 2 and 100 are included
     });
 });
